@@ -38,6 +38,37 @@ const ChartIcon = () => (
 function App() {
   const root = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.body.style.overflow = ''
+      const skipTimer = window.setTimeout(() => setLoading(false), 0)
+      return () => window.clearTimeout(skipTimer)
+    }
+
+    const loaderTimeline = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      onComplete: () => {
+        document.body.style.overflow = ''
+        setLoading(false)
+      },
+    })
+
+    loaderTimeline
+      .from('.loader-mark', { scale: 0.72, opacity: 0, duration: 0.65 })
+      .from('.loader-name, .loader-role', { y: 14, opacity: 0, stagger: 0.08, duration: 0.45 }, '-=0.3')
+      .to('.loader-progress-fill', { scaleX: 1, duration: 1.05, ease: 'power2.inOut' }, '-=0.25')
+      .to('.loader-content', { y: -12, opacity: 0, duration: 0.45, ease: 'power2.in' }, '+=0.12')
+      .to('.portfolio-loader', { opacity: 0, duration: 0.45, ease: 'power2.inOut' }, '-=0.18')
+
+    return () => {
+      loaderTimeline.kill()
+      document.body.style.overflow = ''
+    }
+  }, [])
 
   useEffect(() => {
     const closeMenu = () => setMenuOpen(false)
@@ -68,6 +99,21 @@ function App() {
 
   return (
     <>
+      {loading && (
+        <div className="portfolio-loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+          <div className="loader-grid" />
+          <div className="loader-glow" />
+          <div className="loader-content">
+            <div className="loader-mark" aria-hidden="true">C<span>D</span><i>.</i></div>
+            <p className="loader-name">Chameera De Silva</p>
+            <p className="loader-role">AI Researcher · Technology Consultant</p>
+            <div className="loader-progress" aria-hidden="true">
+              <span className="loader-progress-fill" />
+            </div>
+            <span className="loader-status">Loading experience</span>
+          </div>
+        </div>
+      )}
       <main ref={root} className="page-shell">
       <section className="hero-section">
         <div className="grid-overlay" />

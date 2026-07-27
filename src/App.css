@@ -1,3 +1,102 @@
+.portfolio-loader {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #f8faff;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(40, 105, 164, .24), transparent 31%),
+    linear-gradient(145deg, #030608 0%, #07121c 52%, #020304 100%);
+}
+.loader-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .26;
+  background-image:
+    linear-gradient(rgba(81, 142, 181, .11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(81, 142, 181, .11) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, #000 0%, transparent 72%);
+}
+.loader-glow {
+  position: absolute;
+  width: min(440px, 78vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(91, 133, 255, .11);
+  border-radius: 50%;
+  box-shadow:
+    0 0 90px rgba(43, 108, 214, .12),
+    inset 0 0 70px rgba(34, 96, 170, .08);
+}
+.loader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(330px, calc(100vw - 48px));
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.loader-mark {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: baseline;
+  color: #fff;
+  font-size: clamp(64px, 8vw, 92px);
+  font-weight: 850;
+  line-height: .9;
+  letter-spacing: -.09em;
+  text-shadow: 0 10px 40px rgba(54, 92, 255, .22);
+}
+.loader-mark span { color: #6282ff; }
+.loader-mark i {
+  margin-left: 5px;
+  color: #6282ff;
+  font-style: normal;
+}
+.loader-name {
+  margin: 24px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.loader-role {
+  margin: 8px 0 0;
+  color: #7f91a5;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.loader-progress {
+  width: 100%;
+  height: 2px;
+  margin-top: 35px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.1);
+}
+.loader-progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4665f2, #72a5ff);
+  box-shadow: 0 0 16px rgba(85, 123, 255, .8);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.loader-status {
+  margin-top: 12px;
+  color: #647488;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
 :root {
   color: #f7f9ff;
   background: #050607;
