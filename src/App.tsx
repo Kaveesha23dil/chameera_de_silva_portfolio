@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import portrait from './assets/portrait-reference.png'
 import AboutSection from './components/AboutSection'
+import ExpertiseSection from './components/ExpertiseSection'
+import RemainingSections from './components/RemainingSections'
 import './App.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Arrow = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -37,7 +42,9 @@ const ChartIcon = () => (
 
 function App() {
   const root = useRef<HTMLDivElement>(null)
+  const progressRef = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showBackToTop, setShowBackToTop] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -71,6 +78,18 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const updateScrollUI = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight
+      const progress = scrollable > 0 ? window.scrollY / scrollable : 0
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${progress})`
+      setShowBackToTop(window.scrollY > window.innerHeight * 0.75)
+    }
+
+    window.addEventListener('scroll', updateScrollUI, { passive: true })
+    return () => window.removeEventListener('scroll', updateScrollUI)
+  }, [])
+
+  useEffect(() => {
     const closeMenu = () => setMenuOpen(false)
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeMenu()
@@ -89,6 +108,17 @@ function App() {
       gsap.to('.float-one', { y: -9, rotation: -3.5, duration: 2.8, repeat: -1, yoyo: true, ease: 'sine.inOut' })
       gsap.to('.float-two', { y: 8, rotation: 1.5, duration: 3.2, repeat: -1, yoyo: true, ease: 'sine.inOut' })
       gsap.to('.float-three', { y: -7, rotation: -1, duration: 2.6, repeat: -1, yoyo: true, ease: 'sine.inOut' })
+
+      gsap.utils.toArray<HTMLElement>('.reveal-section').forEach((section) => {
+        gsap.from(section.querySelectorAll('[data-reveal]'), {
+          scrollTrigger: { trigger: section, start: 'top 78%', once: true },
+          y: 34,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power3.out',
+        })
+      })
     }, root)
     return () => {
       context.revert()
@@ -99,6 +129,7 @@ function App() {
 
   return (
     <>
+      <div className="page-progress-track" aria-hidden="true"><span ref={progressRef} className="page-progress-fill" /></div>
       {loading && (
         <div className="portfolio-loader" role="status" aria-live="polite" aria-label="Loading portfolio">
           <div className="loader-grid" />
@@ -106,7 +137,7 @@ function App() {
           <div className="loader-content">
             <div className="loader-mark" aria-hidden="true">C<span>D</span><i>.</i></div>
             <p className="loader-name">Chameera De Silva</p>
-            <p className="loader-role">AI Researcher · Technology Consultant</p>
+            <p className="loader-role">AI Researcher Â· Technology Consultant</p>
             <div className="loader-progress" aria-hidden="true">
               <span className="loader-progress-fill" />
             </div>
@@ -115,7 +146,7 @@ function App() {
         </div>
       )}
       <main ref={root} className="page-shell">
-      <section className="hero-section">
+      <section id="home" className="hero-section">
         <div className="grid-overlay" />
         <nav className="site-nav" aria-label="Main navigation">
           <a className="brand" href="#home" aria-label="Chameera De Silva home">CD.</a>
@@ -173,6 +204,16 @@ function App() {
       </section>
       </main>
       <AboutSection />
+      <ExpertiseSection />
+      <RemainingSections />
+      <button
+        type="button"
+        className={`back-to-top ${showBackToTop ? 'is-visible' : ''}`}
+        aria-label="Back to top"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <Arrow />
+      </button>
     </>
   )
 }
