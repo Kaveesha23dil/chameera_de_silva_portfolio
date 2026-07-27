@@ -28,8 +28,8 @@ const PORTRAIT_SRC = portrait
 
 function AboutSection() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="bg-white py-20 sm:py-24 lg:py-28">
-      <div className="mx-auto grid w-full max-w-[1120px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[55%_45%] lg:gap-16">
+    <section id="about" aria-labelledby="about-heading" className="reveal-section bg-white py-20 sm:py-24 lg:py-28">
+      <div data-reveal className="mx-auto grid w-full max-w-[1120px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[55%_45%] lg:gap-16">
         {/* Left column: copy + stats */}
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-500">About</p>
