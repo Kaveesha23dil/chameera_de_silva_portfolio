@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import portrait from './assets/portrait-reference.png'
+import AboutSection from './components/AboutSection'
 import './App.css'
 
 const Arrow = () => (
@@ -66,7 +67,8 @@ function App() {
   }, [])
 
   return (
-    <main ref={root} className="page-shell">
+    <>
+      <main ref={root} className="page-shell">
       <section className="hero-section">
         <div className="grid-overlay" />
         <nav className="site-nav" aria-label="Main navigation">
@@ -123,7 +125,9 @@ function App() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+      <AboutSection />
+    </>
   )
 }
 
