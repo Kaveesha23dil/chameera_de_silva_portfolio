@@ -145,7 +145,7 @@ button { font: inherit; }
   position: fixed;
   top: 22px;
   left: 50%;
-  z-index: 20;
+  z-index: 1000;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -452,4 +452,77 @@ body { overflow-x: hidden; }
 }
 @media (max-width: 560px) {
   .back-to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; border-radius: 12px; }
+}
+/* Pinned navigation polish */
+.site-nav {
+  position: fixed !important;
+  isolation: isolate;
+  will-change: transform;
+  transition: filter .3s ease;
+}
+.site-nav.is-scrolled { filter: drop-shadow(0 18px 32px rgba(0,0,0,.36)); }
+.site-nav .nav-links {
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.site-nav.is-scrolled .nav-links {
+  border-color: rgba(121,151,255,.2);
+  background: rgba(8,18,34,.94);
+  box-shadow: 0 14px 38px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.nav-links a {
+  position: relative;
+  overflow: hidden;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: 4px;
+  left: 14px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #6d8cff, transparent);
+  opacity: 0;
+  transform: scaleX(.25);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.nav-links a:not(.active):hover {
+  color: #fff;
+  background: rgba(102,133,255,.11);
+  transform: translateY(-1px);
+}
+.nav-links a:not(.active):hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.nav-links a.active:hover { transform: translateY(-1px); }
+.brand { transition: color .25s ease, transform .25s ease; }
+.brand:hover { color: #7793ff; transform: translateY(-1px); }
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.nav-cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.22) 48%, transparent 76%);
+  transform: translateX(-130%);
+  transition: transform .55s ease;
+}
+.nav-cta:hover::before { transform: translateX(130%); }
+.nav-cta svg { transition: transform .28s ease; }
+.nav-cta:hover svg { transform: translate(2px, -2px); }
+@media (max-width: 900px) {
+  .site-nav { z-index: 1000; }
+  .site-nav.is-scrolled {
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,.34));
+  }
+  .site-nav.is-scrolled .menu-button,
+  .site-nav.is-scrolled .brand {
+    backdrop-filter: blur(16px);
+  }
+  .nav-links a:not(.active):hover { transform: none; }
 }

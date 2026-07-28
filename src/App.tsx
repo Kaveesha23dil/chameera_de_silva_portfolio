@@ -45,6 +45,7 @@ function App() {
   const progressRef = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [navScrolled, setNavScrolled] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -83,6 +84,7 @@ function App() {
       const progress = scrollable > 0 ? window.scrollY / scrollable : 0
       if (progressRef.current) progressRef.current.style.transform = `scaleX(${progress})`
       setShowBackToTop(window.scrollY > window.innerHeight * 0.75)
+      setNavScrolled(window.scrollY > 24)
     }
 
     window.addEventListener('scroll', updateScrollUI, { passive: true })
@@ -145,29 +147,30 @@ function App() {
           </div>
         </div>
       )}
+      <nav className={`site-nav ${navScrolled ? 'is-scrolled' : ''}`} aria-label="Main navigation">
+        <a className="brand" href="#home" aria-label="Chameera De Silva home">CD.</a>
+        <button
+          className="menu-button"
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          aria-label="Toggle navigation"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span /><span />
+        </button>
+        <div id="primary-navigation" className={`nav-links ${menuOpen ? 'is-open' : ''}`}>
+          <a className="active" href="#home" onClick={() => setMenuOpen(false)}><HomeIcon /> Home</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#publications" onClick={() => setMenuOpen(false)}>Publications</a>
+          <a href="#consultation" onClick={() => setMenuOpen(false)}>Consultation</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+        </div>
+        <a className="nav-cta" href="#consultation">Book Consultation <Arrow /></a>
+      </nav>
       <main ref={root} className="page-shell">
       <section id="home" className="hero-section">
         <div className="grid-overlay" />
-        <nav className="site-nav" aria-label="Main navigation">
-          <a className="brand" href="#home" aria-label="Chameera De Silva home">CD.</a>
-          <button
-            className="menu-button"
-            aria-expanded={menuOpen}
-            aria-controls="primary-navigation"
-            aria-label="Toggle navigation"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span /><span />
-          </button>
-          <div id="primary-navigation" className={`nav-links ${menuOpen ? 'is-open' : ''}`}>
-            <a className="active" href="#home" onClick={() => setMenuOpen(false)}><HomeIcon /> Home</a>
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#publications" onClick={() => setMenuOpen(false)}>Publications</a>
-            <a href="#consultation" onClick={() => setMenuOpen(false)}>Consultation</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          </div>
-          <a className="nav-cta" href="#consultation">Book Consultation <Arrow /></a>
-        </nav>
+
 
         <div className="hero-stage">
           <div className="orb orb-left" />
