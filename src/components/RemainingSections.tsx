@@ -155,48 +155,51 @@ function TestimonialsSection() {
 
 function ContactSection() {
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="reveal-section relative overflow-hidden bg-[linear-gradient(120deg,#0a1830_0%,#10254c_100%)] pt-20 text-white sm:pt-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(45,101,211,0.15),transparent_40%)]" />
-      <div className="relative mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-14 px-6 sm:px-8 lg:grid-cols-[46%_54%] lg:gap-20 lg:px-12">
+    <section id="contact" aria-labelledby="contact-heading" className="reveal-section relative overflow-hidden bg-[#0a1830] pt-20 text-white sm:pt-24 lg:pt-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,rgba(54,103,214,0.16),transparent_38%),radial-gradient(circle_at_82%_62%,rgba(48,79,186,0.1),transparent_32%)]" />
+      <div data-reveal className="relative mx-auto grid w-full max-w-[1240px] grid-cols-1 items-start gap-12 px-6 sm:px-8 lg:grid-cols-[44%_56%] lg:gap-16 lg:px-12">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#3978ff]">Contact <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-[#3978ff]" /></p>
-          <h2 id="contact-heading" className="mt-4 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl">Let's Connect &amp;<span className="block text-[#4380ff]">Build The Future Together</span></h2>
-          <p className="mt-6 max-w-[450px] text-sm leading-6 text-slate-400">I'm always open to discussing research collaborations, consulting opportunities, academic projects, and innovative ideas that create real-world impact.</p>
-          <div className="mt-9 space-y-6">
+          <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#557cff]">Contact <span className="h-1.5 w-1.5 rounded-full bg-[#557cff]" /></p>
+          <h2 id="contact-heading" className="mt-4 max-w-[500px] text-3xl font-bold leading-[1.08] tracking-[-0.035em] sm:text-4xl lg:text-[2.65rem]">
+            Let's Connect &amp;<span className="block text-[#557cff]">Build The Future Together</span>
+          </h2>
+          <p className="mt-6 max-w-[470px] text-sm leading-6 text-slate-400">I'm always open to discussing research collaborations, consulting opportunities, academic projects, and innovative ideas that create real-world impact.</p>
+
+          <div className="mt-9 grid max-w-[500px] gap-3">
             {contactOptions.map((option) => (
-              <div key={option.title} className="flex gap-4">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-blue-400/20 bg-blue-500/10 text-xs font-bold text-[#4380ff]">{option.symbol}</span>
-                <span><strong className="text-sm">{option.title}</strong><small className="mt-1 block max-w-[350px] text-[10px] leading-4 text-slate-400">{option.text}</small></span>
+              <div key={option.title} className="group flex gap-4 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4 transition-all duration-300 hover:translate-x-1 hover:border-blue-400/25 hover:bg-blue-500/[0.06]">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-blue-400/20 bg-blue-500/10 text-xs font-bold text-[#5e82ff] transition-transform duration-300 group-hover:scale-105">{option.symbol}</span>
+                <span><strong className="text-sm font-semibold text-slate-100">{option.title}</strong><small className="mt-1 block max-w-[360px] text-[10px] leading-4 text-slate-400">{option.text}</small></span>
               </div>
             ))}
           </div>
         </div>
 
-        <form id="consultation" className="rounded-2xl border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/15 sm:p-8" onSubmit={(event) => event.preventDefault()}>
-          <div className="flex items-center gap-4">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-blue-500/10 text-[#4380ff]">✉</span>
-            <span><h3 className="text-xl font-semibold">Send Me a Message</h3><p className="mt-1 text-[10px] text-slate-400">I will get back to you as soon as possible.</p></span>
+        <form id="consultation" className="relative overflow-hidden rounded-[26px] border border-blue-300/[0.14] bg-[#020711] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.25),0_0_0_5px_rgba(75,105,190,0.03)] sm:p-8 lg:p-10" onSubmit={(event) => event.preventDefault()}>
+          <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
+          <div className="relative flex items-center gap-4 border-b border-white/[0.08] pb-6">
+            <span className="grid h-11 w-11 place-items-center rounded-xl border border-blue-400/20 bg-blue-500/10 text-lg text-[#6586ff]" aria-hidden="true">&#9993;</span>
+            <span><h3 className="text-xl font-semibold tracking-[-0.02em]">Send Me a Message</h3><p className="mt-1 text-[10px] text-slate-400">I will get back to you as soon as possible.</p></span>
           </div>
-          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+          <div className="relative mt-7 grid gap-4 sm:grid-cols-2">
             <label className="sr-only" htmlFor="name">Your name</label>
-            <input id="name" type="text" placeholder="Your Name" className="rounded-xl border border-white/5 bg-white/[0.035] px-4 py-4 text-xs text-white outline-none transition focus:border-blue-400/50" />
+            <input id="name" type="text" placeholder="Your Name" className="rounded-xl border border-white/[0.08] bg-[#071121] px-4 py-4 text-xs text-white outline-none transition-all placeholder:text-slate-600 hover:border-white/15 focus:border-blue-400/50 focus:bg-[#09162a]" />
             <label className="sr-only" htmlFor="email">Your email</label>
-            <input id="email" type="email" placeholder="Your Email" className="rounded-xl border border-white/5 bg-white/[0.035] px-4 py-4 text-xs text-white outline-none transition focus:border-blue-400/50" />
+            <input id="email" type="email" placeholder="Your Email" className="rounded-xl border border-white/[0.08] bg-[#071121] px-4 py-4 text-xs text-white outline-none transition-all placeholder:text-slate-600 hover:border-white/15 focus:border-blue-400/50 focus:bg-[#09162a]" />
             <label className="sr-only" htmlFor="subject">Subject</label>
-            <input id="subject" type="text" placeholder="Subject" className="rounded-xl border border-white/5 bg-white/[0.035] px-4 py-4 text-xs text-white outline-none transition focus:border-blue-400/50 sm:col-span-2" />
+            <input id="subject" type="text" placeholder="Subject" className="rounded-xl border border-white/[0.08] bg-[#071121] px-4 py-4 text-xs text-white outline-none transition-all placeholder:text-slate-600 hover:border-white/15 focus:border-blue-400/50 focus:bg-[#09162a] sm:col-span-2" />
             <label className="sr-only" htmlFor="message">Your message</label>
-            <textarea id="message" rows={6} placeholder="Your Message" className="resize-none rounded-xl border border-white/5 bg-white/[0.035] px-4 py-4 text-xs text-white outline-none transition focus:border-blue-400/50 sm:col-span-2" />
+            <textarea id="message" rows={6} placeholder="Your Message" className="resize-none rounded-xl border border-white/[0.08] bg-[#071121] px-4 py-4 text-xs text-white outline-none transition-all placeholder:text-slate-600 hover:border-white/15 focus:border-blue-400/50 focus:bg-[#09162a] sm:col-span-2" />
           </div>
-          <button type="submit" className="mt-5 flex w-full items-center justify-center gap-3 rounded-lg bg-gradient-to-r from-[#6587ff] to-[#3b4ded] px-5 py-3.5 text-xs font-semibold shadow-lg shadow-blue-900/40 transition-transform hover:-translate-y-0.5">Send Message <span aria-hidden="true">⌁</span></button>
+          <button type="submit" className="group relative mt-5 flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl border border-blue-300/20 bg-gradient-to-r from-[#5b7dff] to-[#3549e8] px-5 py-4 text-xs font-semibold shadow-[0_12px_34px_rgba(48,68,218,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(48,68,218,0.4)]">Send Message <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&#8594;</span></button>
         </form>
       </div>
-
-      <footer className="relative mt-24 px-4 pb-8 sm:px-6 sm:pb-10">
-        <div data-reveal className="relative mx-auto w-full max-w-[1240px] overflow-hidden rounded-[26px] border border-blue-300/[0.14] bg-[#020711] shadow-[0_30px_90px_rgba(0,0,0,0.35),0_0_0_6px_rgba(80,110,190,0.04)]">
+      <footer className="relative mt-16 w-full pb-0 sm:mt-20">
+        <div data-reveal className="relative w-full overflow-hidden border-y border-blue-300/[0.14] bg-[#020711] shadow-[0_-20px_70px_rgba(0,0,0,0.2)]">
           <div className="pointer-events-none absolute inset-x-[12%] bottom-[-180px] h-[360px] rounded-full bg-[#315cf4]/25 blur-[90px]" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(68,104,255,0.14),transparent_48%)]" />
 
-          <div className="relative px-6 pt-10 sm:px-10 sm:pt-12 lg:px-16 lg:pt-14">
+          <div className="relative mx-auto w-full max-w-[1240px] px-6 pt-10 sm:px-8 sm:pt-12 lg:px-12 lg:pt-14">
             <div className="flex flex-col gap-8 border-b border-white/[0.09] pb-10 sm:flex-row sm:items-end sm:justify-between sm:pb-12">
               <div>
                 <p className="text-sm text-slate-300 sm:text-base">Let's collaborate. Say hello</p>
