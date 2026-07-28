@@ -80,7 +80,7 @@ function ExpertiseSection() {
           <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#4380ff]">
             Expertise <span className="h-1.5 w-1.5 rounded-full bg-[#3478ff]" />
           </p>
-          <h2 id="expertise-heading" className="mt-4 text-3xl font-bold leading-[1.08] tracking-[-0.03em] sm:text-4xl lg:text-[2.65rem]">
+          <h2 id="expertise-heading" className="mt-4 text-[clamp(2rem,3vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.035em]">
             Areas of Expertise &amp;
             <span className="block text-[#4380ff]">Research Focus</span>
           </h2>
@@ -98,8 +98,8 @@ function ExpertiseSection() {
               <div className="flex items-start gap-4">
                 <span className="mt-0.5 shrink-0 text-[#3478ff] transition-transform duration-300 group-hover:scale-110">{item.icon}</span>
                 <div>
-                  <h3 className="text-xl font-semibold leading-[1.08] tracking-[-0.02em] text-slate-100">{item.title}</h3>
-                  <p className="mt-4 text-[13px] leading-5 text-slate-400">{item.description}</p>
+                  <h3 className="text-lg font-semibold leading-[1.15] sm:text-xl tracking-[-0.02em] text-slate-100">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-400">{item.description}</p>
                 </div>
               </div>
             </article>
