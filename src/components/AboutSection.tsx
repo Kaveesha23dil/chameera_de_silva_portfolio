@@ -29,14 +29,14 @@ const PORTRAIT_SRC = portrait
 function AboutSection() {
   return (
     <section id="about" aria-labelledby="about-heading" className="reveal-section bg-white py-20 sm:py-24 lg:py-28">
-      <div data-reveal className="mx-auto grid w-full max-w-[1120px] grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[55%_45%] lg:gap-16">
+      <div data-reveal className="mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-14 px-6 sm:px-8 lg:grid-cols-[52%_48%] lg:gap-20 lg:px-12">
         {/* Left column: copy + stats */}
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-500">About</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500">About</p>
 
           <h2
             id="about-heading"
-            className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-[#0b1a2f] sm:text-4xl lg:text-[2.75rem]"
+            className="mt-4 text-[clamp(2rem,3vw,2.75rem)] font-extrabold leading-[1.08] tracking-[-0.035em] text-[#0b1a2f]"
           >
             Transforming Research Into{' '}
             <span className="bg-gradient-to-r from-[#5da1ff] to-[#3645e8] bg-clip-text text-transparent">
@@ -44,7 +44,7 @@ function AboutSection() {
             </span>
           </h2>
 
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg">
+          <p className="mt-6 max-w-[560px] text-sm leading-6 text-gray-600 sm:text-[15px]">
             I combine academic research, artificial intelligence, data science, cloud computing, and modern
             software engineering to design practical solutions for real-world challenges. My work focuses on
             transforming complex ideas into reliable, scalable, and user-centred digital products.
@@ -57,7 +57,7 @@ function AboutSection() {
                 className="rounded-2xl border border-gray-100 bg-gray-50/70 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-100 hover:bg-white hover:shadow-lg hover:shadow-blue-100/60"
               >
                 <dt className="text-3xl font-extrabold text-[#0b1a2f] sm:text-4xl">{stat.value}</dt>
-                <dd className="mt-1 text-sm font-medium text-gray-600">{stat.label}</dd>
+                <dd className="mt-2 text-xs font-medium leading-5 text-gray-600">{stat.label}</dd>
               </div>
             ))}
           </dl>

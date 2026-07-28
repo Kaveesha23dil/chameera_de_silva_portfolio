@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import portrait from './assets/portrait-reference.png'
+import portrait from './assets/hero-portrait.png'
 import AboutSection from './components/AboutSection'
 import ExpertiseSection from './components/ExpertiseSection'
 import RemainingSections from './components/RemainingSections'
