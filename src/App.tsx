@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import portrait from './assets/hero-portrait.png'
 import AboutSection from './components/AboutSection'
+import AboutPage from './components/AboutPage'
 import ExpertiseSection from './components/ExpertiseSection'
 import RemainingSections from './components/RemainingSections'
 import './App.css'
@@ -47,7 +48,22 @@ function App() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [isAboutPage, setIsAboutPage] = useState(() => window.location.pathname.replace(/\/+$/, '') === '/about')
 
+  useEffect(() => {
+    const syncRoute = () => setIsAboutPage(window.location.pathname.replace(/\/+$/, '') === '/about')
+    window.addEventListener('popstate', syncRoute)
+    return () => window.removeEventListener('popstate', syncRoute)
+  }, [])
+
+  const openAboutPage = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    window.history.pushState({}, '', '/about')
+    setIsAboutPage(true)
+    setMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
@@ -99,6 +115,7 @@ function App() {
     window.addEventListener('resize', closeMenu)
     window.addEventListener('keydown', closeOnEscape)
 
+    const animationScope = root.current ?? document.body
     const context = gsap.context(() => {
       const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } })
       timeline
@@ -121,7 +138,7 @@ function App() {
           ease: 'power3.out',
         })
       })
-    }, root)
+    }, animationScope)
     return () => {
       context.revert()
       window.removeEventListener('resize', closeMenu)
@@ -148,7 +165,7 @@ function App() {
         </div>
       )}
       <nav className={`site-nav ${navScrolled ? 'is-scrolled' : ''}`} aria-label="Main navigation">
-        <a className="brand" href="#home" aria-label="Chameera De Silva home">CD.</a>
+        <a className="brand" href="/" aria-label="Chameera De Silva home">CD.</a>
         <button
           className="menu-button"
           aria-expanded={menuOpen}
@@ -159,14 +176,18 @@ function App() {
           <span /><span />
         </button>
         <div id="primary-navigation" className={`nav-links ${menuOpen ? 'is-open' : ''}`}>
-          <a className="active" href="#home" onClick={() => setMenuOpen(false)}><HomeIcon /> Home</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="#publications" onClick={() => setMenuOpen(false)}>Publications</a>
-          <a href="#consultation" onClick={() => setMenuOpen(false)}>Consultation</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a className={!isAboutPage ? 'active' : ''} href="/#home" onClick={() => setMenuOpen(false)}><HomeIcon /> Home</a>
+          <a className={isAboutPage ? 'active' : ''} href="/about" onClick={openAboutPage}>About</a>
+          <a href="/#publications" onClick={() => setMenuOpen(false)}>Publications</a>
+          <a href="/#consultation" onClick={() => setMenuOpen(false)}>Consultation</a>
+          <a href="/#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </div>
-        <a className="nav-cta" href="#consultation">Book Consultation <Arrow /></a>
+        <a className="nav-cta" href="/#consultation">Book Consultation <Arrow /></a>
       </nav>
+      {isAboutPage ? (
+        <AboutPage />
+      ) : (
+        <>
       <main ref={root} className="page-shell">
       <section id="home" className="hero-section">
         <div className="grid-overlay" />
@@ -209,6 +230,8 @@ function App() {
       <AboutSection />
       <ExpertiseSection />
       <RemainingSections />
+        </>
+      )}
       <button
         type="button"
         className={`back-to-top ${showBackToTop ? 'is-visible' : ''}`}
