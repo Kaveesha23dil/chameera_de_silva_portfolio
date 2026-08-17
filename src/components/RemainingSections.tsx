@@ -57,7 +57,7 @@ function ProjectsSection() {
           <p className="mt-6 max-w-[440px] text-sm leading-6 text-slate-500 sm:text-[15px]">
             A selection of research initiatives, technology solutions, and industry projects focused on creating real-world impact.
           </p>
-          <a href="#projects-grid" className="mt-8 inline-flex items-center gap-8 rounded-lg bg-gradient-to-r from-[#6687ff] to-[#3b4deb] px-5 py-3 text-xs font-semibold text-white shadow-lg shadow-blue-300/40 transition-transform duration-300 hover:-translate-y-1">
+          <a href="#projects-grid" className="button button-primary button-compact mt-8">
             View All Projects <Arrow />
           </a>
         </div>
@@ -116,7 +116,7 @@ function PublicationsSection() {
         </div>
 
         <div className="mt-8 text-center">
-          <a href="#contact" className="inline-flex items-center gap-8 rounded-lg bg-gradient-to-r from-[#6687ff] to-[#3b4deb] px-6 py-3 text-xs font-semibold shadow-lg shadow-blue-900/30 transition-transform hover:-translate-y-1">View All Publications <Arrow /></a>
+          <a href="#contact" className="button button-primary button-compact mx-auto">View All Publications <Arrow /></a>
         </div>
       </div>
     </section>
@@ -191,7 +191,7 @@ function ContactSection() {
             <label className="sr-only" htmlFor="message">Your message</label>
             <textarea id="message" rows={6} placeholder="Your Message" className="resize-none rounded-xl border border-white/[0.08] bg-[#071121] px-4 py-4 text-sm text-white outline-none transition-all placeholder:text-slate-600 hover:border-white/15 focus:border-blue-400/50 focus:bg-[#09162a] sm:col-span-2" />
           </div>
-          <button type="submit" className="group relative mt-5 flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl border border-blue-300/20 bg-gradient-to-r from-[#5b7dff] to-[#3549e8] px-5 py-4 text-sm font-semibold shadow-[0_12px_34px_rgba(48,68,218,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(48,68,218,0.4)]">Send Message <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&#8594;</span></button>
+          <button type="submit" className="button button-primary button-fluid mt-5">Send Message <Arrow /></button>
         </form>
       </div>
       <footer className="relative mt-16 w-full pb-0 sm:mt-20">
@@ -207,20 +207,14 @@ function ContactSection() {
                   Start a conversation<span className="text-[#5878ff]">.</span>
                 </a>
               </div>
-              <a href="#consultation" className="group inline-flex w-fit shrink-0 items-center gap-4 rounded-full border border-blue-300/30 bg-gradient-to-r from-[#5879ff] to-[#3549e8] px-5 py-3 text-[11px] font-semibold text-white shadow-[0_8px_30px_rgba(52,73,232,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(52,73,232,0.42)]">
-                Book a consultation
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/15 text-sm transition-transform duration-300 group-hover:rotate-45">&#8599;</span>
-              </a>
+              <a href="#consultation" className="button button-primary button-compact shrink-0">Book a consultation <Arrow /></a>
             </div>
 
             <div className="grid grid-cols-1 gap-12 py-12 sm:grid-cols-2 lg:grid-cols-[1.45fr_0.85fr_1fr_0.9fr] lg:gap-14 lg:py-14">
               <div className="max-w-[310px]">
                 <a href="#home" className="text-2xl font-bold tracking-[-0.04em] text-white transition-colors hover:text-[#7792ff]">CHAMEERA<span className="text-[#5878ff]">.</span></a>
                 <p className="mt-4 text-xs leading-5 text-slate-400">AI researcher, lecturer, and technology consultant creating intelligent solutions with meaningful real-world impact.</p>
-                <a href="#contact" className="group mt-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2.5 text-[10px] font-semibold text-slate-300 transition-all hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-white">
-                  <span className="grid h-5 w-5 place-items-center rounded-full bg-[#4968ee] text-[10px] transition-transform group-hover:rotate-45">&#8599;</span>
-                  Download CV
-                </a>
+                <a href="#contact" className="button button-secondary button-compact mt-6">Download CV <Arrow /></a>
               </div>
 
               <FooterLinks title="Quick Links" links={[
