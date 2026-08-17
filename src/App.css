@@ -324,14 +324,21 @@ h1 {
   padding: 15px 22px;
   border: 1px solid transparent;
   border-radius: 9px;
+  color: #fff;
+  cursor: pointer;
   font-size: 13px;
   font-weight: 750;
   transition: transform .25s, box-shadow .25s, background .25s;
 }
 .button:hover { transform: translateY(-3px); }
+.button svg { transition: transform .25s; }
+.button:hover svg { transform: translate(2px, -2px); }
 .button-primary { background: linear-gradient(135deg, #6785ff, #3445e8); box-shadow: 0 9px 26px rgba(57,76,235,.35); }
+.button-primary:hover { box-shadow: 0 13px 32px rgba(57,76,235,.48); }
 .button-secondary { border-color: #d8dbe0; background: rgba(4,5,6,.35); }
 .button-secondary:hover { background: rgba(255,255,255,.08); }
+.button-compact { width: fit-content; min-width: 0; padding: 13px 20px; font-size: 12px; }
+.button-fluid { width: 100%; }
 
 @media (max-width: 900px) {
   .page-shell { padding: 0; }
@@ -382,7 +389,7 @@ h1 {
   h1 { font-size: clamp(39px, 12vw, 58px); }
   .tagline { max-width: 360px; margin: 14px auto 20px; line-height: 1.5; }
   .hero-actions { gap: 10px; }
-  .button { min-width: 0; flex: 1; gap: 12px; padding: 14px 10px; font-size: 11px; }
+  .hero-actions .button { min-width: 0; flex: 1; gap: 12px; padding: 14px 10px; font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
